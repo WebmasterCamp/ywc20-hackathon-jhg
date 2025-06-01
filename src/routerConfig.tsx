@@ -1,0 +1,34 @@
+import {createBrowserRouter, Outlet} from 'react-router';
+import {LoginPage, JobRegisterPage} from './pages';
+
+export const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <LoginPage />,
+    },
+    {
+        path: '/job-register',
+        element: <JobRegisterPage />,
+    },
+    {
+        path: '/home',
+        element: (
+            <div>
+                <div>layout if needed</div>
+                <Outlet />
+            </div>
+        ),
+        children: [
+            {
+                path: '',
+                element: <div>Settings</div>,
+            },
+            {
+                path: '/home/dashboard',
+                element: <div>Dashboard</div>,
+            },
+        ],
+    },
+]);
+
+export default router;
