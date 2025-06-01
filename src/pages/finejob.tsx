@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CareerForm from '../components/form/CareerForm';
+import CareerForm from '../forms/CareerForm';
 import images from '../assets';
 import Navbaruser from '@/components/Navbar/Navbaruser';
 import { useNavigate } from 'react-router';
