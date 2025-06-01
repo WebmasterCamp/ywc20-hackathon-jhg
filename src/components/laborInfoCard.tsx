@@ -37,10 +37,6 @@ export const LaborInfoCard = ({
                         {data.phone}
                     </p>
                     <p>
-                        <span className="font-semibold">อีเมล:</span>{' '}
-                        {data.email}
-                    </p>
-                    <p>
                         <span className="font-semibold">อายุ:</span>{' '}
                         {data.age ?? '-'}
                     </p>

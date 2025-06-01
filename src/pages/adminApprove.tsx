@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {LaborInfoCard} from '@/components/laborInfoCard'; // adjust the path
 import type {JobRegisterFormValues} from '@/schemas/jobRegisterSchema';
+import Swal from 'sweetalert2';
 
 export const AdminApprovePage = () => {
     const [users, setUsers] = useState<JobRegisterFormValues[]>([]);
@@ -15,23 +16,76 @@ export const AdminApprovePage = () => {
     }, []);
 
     const onDecline = (data: JobRegisterFormValues) => {
-        // Example: remove user from localStorage
-        const updatedUsers = users.filter((user) => user.email !== data.email);
-        setUsers(updatedUsers);
-        localStorage.setItem('jobRegisterData', JSON.stringify(updatedUsers));
+        Swal.fire({
+            title: 'ยืนยันการปฏิเสธ?',
+            text: 'คุณแน่ใจหรือไม่ว่าต้องการปฏิเสธผู้สมัครนี้?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'ใช่, ปฏิเสธ',
+            cancelButtonText: 'ยกเลิก',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Proceed with removal
+                const updatedUsers = users.filter(
+                    (user) =>
+                        user.firstName !== data.firstName ||
+                        user.lastName !== data.lastName,
+                );
+                setUsers(updatedUsers);
+                localStorage.setItem(
+                    'jobRegisterData',
+                    JSON.stringify(updatedUsers),
+                );
+
+                Swal.fire({
+                    title: 'ปฏิเสธเรียบร้อยแล้ว',
+                    icon: 'success',
+                    timer: 1500,
+                    showConfirmButton: false,
+                });
+            }
+        });
     };
 
     const onAccept = (data: JobRegisterFormValues) => {
-        // Example: handle accept logic, e.g., move to another storage or notify
-        console.log('Accepted user:', data);
-        // exits acceoted user in localStorage
-        const existingAccepted = JSON.parse(
-            localStorage.getItem('acceptedUser') || '[]',
-        );
-        const updatedData = [...existingAccepted, data];
-        // Save the updated accepted users back to localStorage
-        localStorage.setItem('acceptedUser', JSON.stringify(updatedData));
-        onDecline(data); // Remove from pending list
+        Swal.fire({
+            title: 'มั่นใจใช่ไหมว่าจะรับ?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'ใช่, รับ',
+            cancelButtonText: 'ยกเลิก',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Add to accepted users
+                const existingAccepted = JSON.parse(
+                    localStorage.getItem('acceptedUser') || '[]',
+                );
+                const updatedData = [...existingAccepted, data];
+                localStorage.setItem(
+                    'acceptedUser',
+                    JSON.stringify(updatedData),
+                );
+
+                // Remove from jobRegisterData
+                const updatedUsers = users.filter(
+                    (user) =>
+                        user.firstName !== data.firstName ||
+                        user.lastName !== data.lastName,
+                );
+                setUsers(updatedUsers);
+                localStorage.setItem(
+                    'jobRegisterData',
+                    JSON.stringify(updatedUsers),
+                );
+
+                Swal.fire({
+                    title: 'รับสมัครเรียบร้อยแล้ว',
+                    icon: 'success',
+                    timer: 1500,
+                    showConfirmButton: false,
+                });
+            }
+        });
     };
 
     if (users.length === 0)
