@@ -1,0 +1,16 @@
+{
+    "firstName": "นลธวัช",
+    "lastName": "กัลยาวุฒิพงศ์",
+    "phone": "0811111111",
+    "email": "nontawat.kunl@gmail.com",
+    "age": 50,
+    "address": "บ้านเลขที่ 46 หมู่ 9 หมู่บ้านนกน้อย ซอยรัชดาภิเษก 66 เขตบางซื่อ แขวงบางซื่อ กรุงเทพมหานคร 10800",
+    "workHistory": "ช่างซ่อมไฟที่มหาลัย",
+    "skills": [
+        "electrician"
+    ],
+    "gender": "male",
+    "fileA": "C:\\fakepath\\part1_64070501093.ipynb",
+    "fileB": "C:\\fakepath\\part1_64070501093.ipynb",
+    "fileC": "C:\\fakepath\\part1_64070501093.ipynb"
+}
