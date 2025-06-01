@@ -43,7 +43,6 @@ export const JobRegisterForm = () => {
             firstName: '',
             lastName: '',
             phone: '',
-            email: '',
             age: undefined,
             address: '',
             workHistory: '',
@@ -68,7 +67,7 @@ export const JobRegisterForm = () => {
 
         Swal.fire({
             title: 'สมัครงานสำเร็จ!',
-            text: 'ไฟล์ข้อมูลถูกดาวน์โหลดไปยังเครื่องของคุณแล้ว',
+            text: 'เอกสารของคุณถูกบันทึกเรียบร้อยแล้ว ทีมงานจะพิจารณาและติดต่อกลับโดยเร็วที่สุดค่ะ',
             icon: 'success',
             confirmButtonText: 'ตกลง',
         }).then((result) => {
@@ -131,25 +130,6 @@ export const JobRegisterForm = () => {
                             <FormControl>
                                 <Input
                                     placeholder="0812345678"
-                                    {...field}
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-
-                {/* อีเมล */}
-                <FormField
-                    control={form.control}
-                    name="email"
-                    render={({field}) => (
-                        <FormItem>
-                            <FormLabel>อีเมล</FormLabel>
-                            <FormControl>
-                                <Input
-                                    type="text"
-                                    placeholder="กรอกอีเมล"
                                     {...field}
                                 />
                             </FormControl>
