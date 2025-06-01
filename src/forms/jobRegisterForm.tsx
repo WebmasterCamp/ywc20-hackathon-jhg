@@ -54,7 +54,15 @@ export const JobRegisterForm = () => {
 
     const onSubmit = (data: JobRegisterFormValues) => {
         console.log(data);
-        localStorage.setItem('jobRegisterData', JSON.stringify(data));
+        
+        // Get existing data from localStorage
+        const existingData = JSON.parse(localStorage.getItem('jobRegisterData') || '[]');
+
+        // Append new data to the array
+        const updatedData = [...existingData, data];
+
+        // Save back to localStorage
+        localStorage.setItem('jobRegisterData', JSON.stringify(updatedData));
 
         Swal.fire({
             title: 'สมัครงานสำเร็จ!',
@@ -277,8 +285,8 @@ export const JobRegisterForm = () => {
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                    <SelectItem value="male">ชาย</SelectItem>
-                                    <SelectItem value="female">หญิง</SelectItem>
+                                    <SelectItem value="ชาย">ชาย</SelectItem>
+                                    <SelectItem value="หญิง">หญิง</SelectItem>
                                 </SelectContent>
                             </Select>
                             <FormMessage />
