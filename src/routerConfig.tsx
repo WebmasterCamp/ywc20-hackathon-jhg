@@ -1,5 +1,6 @@
-import {createBrowserRouter, Outlet} from 'react-router';
-import {LoginPage, JobRegisterPage, Homepage} from './pages';
+import {createBrowserRouter} from 'react-router';
+import {LoginPage, JobRegisterPage, Landingpage, FineJob} from './pages';
+import Adminconfirm from './pages/adminconfirm';
 
 export const router = createBrowserRouter([
     {
@@ -11,18 +12,26 @@ export const router = createBrowserRouter([
         element: <JobRegisterPage />,
     },
     {
-        path: '/',
-        element: <Homepage />,
-        children: [
-            {
-                path: '',
-                element: <div>Settings</div>,
-            },
-            {
-                path: '/home/dashboard',
-                element: <div>Dashboard</div>,
-            },
-        ],
+        path: '/finejob',
+        element: <FineJob />,
+    },
+     {
+        path: '/adminconfirm',
+        element: <Adminconfirm />,
+    },
+    {
+        path: '/Landingpage',
+        element: <Landingpage />,
+        // children: [
+        //     {
+        //         path: '',
+        //         element: <div>Settings</div>,
+        //     },
+        //     {
+        //         path: '/home/dashboard',
+        //         element: <div>Dashboard</div>,
+        //     },
+        // ],
     },
 ]);
 
