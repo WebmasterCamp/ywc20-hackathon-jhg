@@ -27,12 +27,12 @@ import {
 } from '@/components/ui/select';
 
 const skillOptions = [
-    {label: 'ช่างไม้', value: 'carpenter'},
-    {label: 'ช่างเชื่อม', value: 'welder'},
-    {label: 'ช่างไฟฟ้า', value: 'electrician'},
-    {label: 'ช่างซ่อมรถ', value: 'mechanic'},
-    {label: 'พนักงานคลังสินค้า', value: 'warehouse'},
-    {label: 'IT Support', value: 'it_support'},
+    {label: 'ช่างไม้', value: 'ช่างไม้'},
+    {label: 'ช่างเชื่อม', value: 'ช่างเชื่อม'},
+    {label: 'ช่างไฟฟ้า', value: 'ช่างไฟฟ้า'},
+    {label: 'ช่างซ่อมรถ', value: 'ช่างซ่อมรถ'},
+    {label: 'พนักงานคลังสินค้า', value: 'พนักงานคลังสินค้า'},
+    {label: 'IT Support', value: 'IT Support'},
 ];
 
 export const JobRegisterForm = () => {
@@ -54,7 +54,17 @@ export const JobRegisterForm = () => {
 
     const onSubmit = (data: JobRegisterFormValues) => {
         console.log(data);
-        localStorage.setItem('jobRegisterData', JSON.stringify(data));
+
+        // Get existing data from localStorage
+        const existingData = JSON.parse(
+            localStorage.getItem('jobRegisterData') || '[]',
+        );
+
+        // Append new data to the array
+        const updatedData = [...existingData, data];
+
+        // Save back to localStorage
+        localStorage.setItem('jobRegisterData', JSON.stringify(updatedData));
 
         Swal.fire({
             title: 'สมัครงานสำเร็จ!',
@@ -278,8 +288,8 @@ export const JobRegisterForm = () => {
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                    <SelectItem value="male">ชาย</SelectItem>
-                                    <SelectItem value="female">หญิง</SelectItem>
+                                    <SelectItem value="ชาย">ชาย</SelectItem>
+                                    <SelectItem value="หญิง">หญิง</SelectItem>
                                 </SelectContent>
                             </Select>
                             <FormMessage />
