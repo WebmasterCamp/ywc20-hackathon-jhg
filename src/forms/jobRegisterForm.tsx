@@ -1,5 +1,5 @@
-import {useForm} from 'react-hook-form';
-import {zodResolver} from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
     Form,
     FormControl,
@@ -8,16 +8,16 @@ import {
     FormLabel,
     FormMessage,
 } from '@/components/ui/form';
-import {Input} from '@/components/ui/input';
-import {Textarea} from '@/components/ui/textarea';
-import {Button} from '@/components/ui/button';
-import {Badge} from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import Swal from 'sweetalert2';
 import {
     jobRegisterSchema,
     type JobRegisterFormValues,
 } from '@/schemas/jobRegisterSchema'; // ปรับ path ตามโปรเจกต์คุณ
-import {useNavigate} from 'react-router';
+import { useNavigate } from 'react-router';
 import {
     Select,
     SelectContent,
@@ -27,12 +27,12 @@ import {
 } from '@/components/ui/select';
 
 const skillOptions = [
-    {label: 'ช่างไม้', value: 'carpenter'},
-    {label: 'ช่างเชื่อม', value: 'welder'},
-    {label: 'ช่างไฟฟ้า', value: 'electrician'},
-    {label: 'ช่างซ่อมรถ', value: 'mechanic'},
-    {label: 'พนักงานคลังสินค้า', value: 'warehouse'},
-    {label: 'IT Support', value: 'it_support'},
+    { label: 'ช่างไม้', value: 'ช่างไม้' },
+    { label: 'ช่างเชื่อม', value: 'ช่างเชื่อม' },
+    { label: 'ช่างไฟฟ้า', value: 'ช่างไฟฟ้า' },
+    { label: 'ช่างซ่อมรถ', value: 'ช่างซ่อมรถ' },
+    { label: 'พนักงานคลังสินค้า', value: 'พนักงานคลังสินค้า' },
+    { label: 'IT Support', value: 'IT Support' },
 ];
 
 export const JobRegisterForm = () => {
@@ -79,7 +79,7 @@ export const JobRegisterForm = () => {
                 <FormField
                     control={form.control}
                     name="firstName"
-                    render={({field}) => (
+                    render={({ field }) => (
                         <FormItem>
                             <FormLabel>ชื่อ</FormLabel>
                             <FormControl>
@@ -97,7 +97,7 @@ export const JobRegisterForm = () => {
                 <FormField
                     control={form.control}
                     name="lastName"
-                    render={({field}) => (
+                    render={({ field }) => (
                         <FormItem>
                             <FormLabel>นามสกุล</FormLabel>
                             <FormControl>
@@ -115,7 +115,7 @@ export const JobRegisterForm = () => {
                 <FormField
                     control={form.control}
                     name="phone"
-                    render={({field}) => (
+                    render={({ field }) => (
                         <FormItem>
                             <FormLabel>เบอร์โทรศัพท์</FormLabel>
                             <FormControl>
@@ -133,7 +133,7 @@ export const JobRegisterForm = () => {
                 <FormField
                     control={form.control}
                     name="email"
-                    render={({field}) => (
+                    render={({ field }) => (
                         <FormItem>
                             <FormLabel>อีเมล</FormLabel>
                             <FormControl>
@@ -152,7 +152,7 @@ export const JobRegisterForm = () => {
                 <FormField
                     control={form.control}
                     name="age"
-                    render={({field}) => (
+                    render={({ field }) => (
                         <FormItem>
                             <FormLabel>อายุ</FormLabel>
                             <FormControl>
@@ -174,7 +174,7 @@ export const JobRegisterForm = () => {
                 <FormField
                     control={form.control}
                     name="address"
-                    render={({field}) => (
+                    render={({ field }) => (
                         <FormItem>
                             <FormLabel>ที่อยู่</FormLabel>
                             <FormControl>
@@ -192,7 +192,7 @@ export const JobRegisterForm = () => {
                 <FormField
                     control={form.control}
                     name="workHistory"
-                    render={({field}) => (
+                    render={({ field }) => (
                         <FormItem>
                             <FormLabel>ประวัติการทำงาน (ถ้ามี)</FormLabel>
                             <FormControl>
@@ -210,7 +210,7 @@ export const JobRegisterForm = () => {
                 <FormField
                     control={form.control}
                     name="skills"
-                    render={({field}) => (
+                    render={({ field }) => (
                         <FormItem>
                             <FormLabel>ความสามารถพิเศษ</FormLabel>
                             <FormControl>
@@ -228,11 +228,10 @@ export const JobRegisterForm = () => {
                                                         ? 'default'
                                                         : 'outline'
                                                 }
-                                                className={`cursor-pointer px-3 py-1 text-sm transition-colors ${
-                                                    isSelected
+                                                className={`cursor-pointer px-3 py-1 text-sm transition-colors ${isSelected
                                                         ? 'bg-primary text-white'
                                                         : 'hover:bg-muted hover:text-foreground'
-                                                }`}
+                                                    }`}
                                                 onClick={() => {
                                                     if (isSelected) {
                                                         field.onChange(
@@ -265,7 +264,7 @@ export const JobRegisterForm = () => {
                 <FormField
                     control={form.control}
                     name="gender"
-                    render={({field}) => (
+                    render={({ field }) => (
                         <FormItem>
                             <FormLabel>เพศ</FormLabel>
                             <Select
@@ -291,7 +290,7 @@ export const JobRegisterForm = () => {
                 <FormField
                     control={form.control}
                     name="fileA"
-                    render={({field}) => (
+                    render={({ field }) => (
                         <FormItem>
                             <FormLabel>ไฟล์ A</FormLabel>
                             <FormControl>
@@ -309,7 +308,7 @@ export const JobRegisterForm = () => {
                 <FormField
                     control={form.control}
                     name="fileB"
-                    render={({field}) => (
+                    render={({ field }) => (
                         <FormItem>
                             <FormLabel>ไฟล์ A</FormLabel>
                             <FormControl>
@@ -327,7 +326,7 @@ export const JobRegisterForm = () => {
                 <FormField
                     control={form.control}
                     name="fileC"
-                    render={({field}) => (
+                    render={({ field }) => (
                         <FormItem>
                             <FormLabel>ไฟล์ C</FormLabel>
                             <FormControl>
