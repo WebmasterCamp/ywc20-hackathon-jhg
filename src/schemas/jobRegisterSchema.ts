@@ -1,7 +1,8 @@
 import {z} from 'zod';
 
 export const jobRegisterSchema = z.object({
-    fullName: z.string().min(1, 'กรุณากรอกชื่อ-นามสกุล'),
+    firstName: z.string().min(1, 'กรุณากรอกชื่อ'),
+    lastName: z.string().min(1, 'กรุณากรอกนามสกุล'),
     phone: z
         .string()
         .regex(
@@ -18,6 +19,25 @@ export const jobRegisterSchema = z.object({
     address: z.string().min(1, 'กรุณากรอกที่อยู่'),
     workHistory: z.string().optional(),
     skills: z.array(z.string()).min(1, 'กรุณาเลือกความสามารถอย่างน้อย 1 อย่าง'),
+    gender: z.enum(['male', 'female'], {
+        required_error: 'กรุณาเลือกเพศ',
+        invalid_type_error: 'กรุณาเลือกเพศให้ถูกต้อง',
+    }),
+    fileA: z
+        .any()
+        .refine((file) => file instanceof File || (file && file.length > 0), {
+            message: 'กรุณาอัปโหลดไฟล์ A',
+        }),
+    fileB: z
+        .any()
+        .refine((file) => file instanceof File || (file && file.length > 0), {
+            message: 'กรุณาอัปโหลดไฟล์ B',
+        }),
+    fileC: z
+        .any()
+        .refine((file) => file instanceof File || (file && file.length > 0), {
+            message: 'กรุณาอัปโหลดไฟล์ C',
+        }),
 });
 
 export type JobRegisterFormValues = z.infer<typeof jobRegisterSchema>;
