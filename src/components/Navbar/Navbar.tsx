@@ -8,9 +8,9 @@ const Navbar: React.FC = () => {
                 ไว้ใจ
             </Link>
 
-            <div className="flex gap-4">
+            <div className="flex gap-6">
                 <Link
-                    to="/"
+                    to="/landingpage"
                     className="text-gray-700 hover:text-blue-600 transition-colors"
                 >
                     หน้าหลัก
