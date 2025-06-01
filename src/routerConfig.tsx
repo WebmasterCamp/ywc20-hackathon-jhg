@@ -1,5 +1,5 @@
 import {createBrowserRouter, Outlet} from 'react-router';
-import {LoginPage, JobRegisterPage} from './pages';
+import {LoginPage, JobRegisterPage, AdminApprovePage} from './pages';
 
 export const router = createBrowserRouter([
     {
@@ -9,6 +9,10 @@ export const router = createBrowserRouter([
     {
         path: '/job-register',
         element: <JobRegisterPage />,
+    },
+    {
+        path: '/admin/approve',
+        element: <AdminApprovePage />,
     },
     {
         path: '/home',
