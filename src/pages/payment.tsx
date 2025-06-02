@@ -7,10 +7,10 @@ import { Button } from '@/components/ui/button';
 
 const Payment: React.FC = () => {
     const navigate = useNavigate();
-    const allPerson = JSON.parse(localStorage.getItem('selectedEmployees') || '[]'); // Default to 1 if not set
+    const allPerson = JSON.parse(localStorage.getItem('selectedEmployees') || '[]'); // Default to [] if not set
     const num = allPerson.length;
 
-    const oldAll = JSON.parse(localStorage.getItem('allNumEmployees') || '0'); // Default to 1 if not set
+    const oldAll = JSON.parse(localStorage.getItem('allNumEmployees') || '0'); // Default to 0 if not set
     const oldNum = oldAll;
 
     const handleGoToWorkers = () => {
