@@ -59,7 +59,7 @@ const WorkersPage: React.FC = () => {
 
             <div className="w-full min-h-screen items-center justify-center bg-white px-4 md:px-32 mt-32">
                 <div className='border-2 border-primary rounded-[20px] py-12'>
-                    <img src={images.status2} alt="status" className="w-full max-w-md mx-auto" />
+                    <img src={images.status4} alt="status" className="w-full max-w-md mx-auto" />
                 </div>
 
                 <div className="mt-10 space-y-6 bg-white p-6 border-2 border-primary rounded-[20px]">
