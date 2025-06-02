@@ -14,7 +14,7 @@ const Landingpage: React.FC = () => {
     return (
         <div>
             <Navbar />
-            <div className="w-full min-h-screen flex items-center justify-center bg-white px-4 md:px-32">
+            <div className="w-full min-h-screen flex items-center justify-center bg-[#FFF2DF] px-4 md:px-32">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-6xl mx-auto py-20">
                     {/* ฝั่งข้อความ */}
                     <div>
