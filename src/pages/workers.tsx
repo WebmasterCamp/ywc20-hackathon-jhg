@@ -33,6 +33,7 @@ const WorkersPage: React.FC = () => {
 
         setSelectedEmployees(safeSelected);
         setTotalRequestedCount(safeSelected.length); // ✅ ตั้งค่าจำนวนรวม
+        localStorage.setItem('allNumEmployees', JSON.stringify(safeSelected.length));
     }, []);
 
     const handleDelete = (nameToDelete: string) => {
