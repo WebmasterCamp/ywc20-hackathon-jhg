@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import employees from '@/data/dataworker'; // ปรับ path ให้ตรงตามโครงสร้างโปรเจกต์ของคุณ
 
 interface CareerEntry {
   career: string;
@@ -12,18 +13,16 @@ interface CareerFormProps {
 }
 
 const CareerForm: React.FC<CareerFormProps> = ({ data, onChange }) => {
-  const careers = ['นักเรียน', 'นักศึกษา', 'พนักงานบริษัท'];
+  // 🔹 ดึงอาชีพไม่ซ้ำจาก employees
+  const careers = Array.from(new Set(employees.map((e) => e.career)));
 
   const [selectedCareer, setSelectedCareer] = useState(data[0]?.career || '');
   const [gender, setGender] = useState(data[0]?.gender || '');
   const [peopleCount, setPeopleCount] = useState(data[0]?.peopleCount || 1);
 
-  // ใช้ useEffect เช็คก่อนส่งข้อมูลกลับแค่เมื่อข้อมูลเปลี่ยนจริง
   useEffect(() => {
-    // สร้าง obj ใหม่
     const newData = [{ career: selectedCareer, gender, peopleCount }];
 
-    // เปรียบเทียบกับ data ที่ได้มาจาก props
     const isSame =
       data.length === newData.length &&
       data.every((d, i) =>

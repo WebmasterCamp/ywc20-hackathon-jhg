@@ -39,31 +39,32 @@ const FineJob: React.FC = () => {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!isFormValid()) {
-      alert('กรุณากรอกข้อมูลให้ครบทุกช่อง');
-      return;
-    }
+  if (!isFormValid()) {
+    alert('กรุณากรอกข้อมูลให้ครบทุกช่อง');
+    return;
+  }
 
-    const fullData = {
-      ...formData,
-      careers: careerData,
-    };
-
-    console.log('Form submitted:', fullData);
-
-    // ส่งข้อมูลไป API ได้ตรงนี้
-
-    // นำทางไปหน้า /adminconfirm
-    navigate('/adminconfirm');
+  const fullData = {
+    ...formData,
+    careers: careerData,
   };
+
+  console.log('Form submitted:', fullData);
+
+  // 👉 บันทึกลง localStorage (ทับ key เดิมถ้ามี)
+  localStorage.setItem('filterConditions', JSON.stringify(fullData.careers));
+
+  // นำทางไปหน้า /adminconfirm
+  navigate('/adminconfirm');
+};
 
   return (
     <div>
       <Navbaruser />
 
-      <div className="w-full min-h-screen items-center justify-center bg-white px-4 md:px-16 mt-32">
+      <div className="w-full min-h-screen items-center justify-center bg-white px-4 md:px-32 mt-32">
         <div className="border-2 border-[#007AFF] rounded-[20px] py-12">
           <img src={images.status1} alt="status" className="w-full max-w-md mx-auto" />
         </div>
