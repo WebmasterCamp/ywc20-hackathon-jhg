@@ -16,12 +16,12 @@ const Payment: React.FC = () => {
             <Navbaruser />
 
             <div className="w-full min-h-screen items-center justify-center bg-white px-4 md:px-32 mt-32">
-                <div className='border-2 border-[#007AFF] rounded-[20px] py-12'>
+                <div className='border-2 border-primary rounded-[20px] py-12'>
                     <img src={images.statusfinal} alt="status" className="w-full max-w-md mx-auto  " />
 
                 </div>
 
-                <div className="mt-10 space-y-6 bg-white p-6 border-2 border-[#007AFF] rounded-[20px] ">
+                <div className="mt-10 space-y-6 bg-white p-6 border-2 border-primary rounded-[20px] ">
                     <img
                         src={images.adminconfirm}
                         alt="status"

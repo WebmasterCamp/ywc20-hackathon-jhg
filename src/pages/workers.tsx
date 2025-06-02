@@ -10,10 +10,6 @@ type FilterCondition = {
     peopleCount: number;
 };
 
-const genderMap: Record<string, 'ชาย' | 'หญิง'> = {
-    male: 'ชาย',
-    female: 'หญิง'
-};
 
 const WorkersPage: React.FC = () => {
     const [matchedEmployees, setMatchedEmployees] = useState<typeof employees>([]);
@@ -23,29 +19,27 @@ const WorkersPage: React.FC = () => {
 
     const navigate = useNavigate();
     useEffect(() => {
-        const raw = localStorage.getItem('filterConditions');
-        if (!raw) {
-            setMatchedEmployees([]);
-            setFilteredEmployees([]);
-            setTotalRequestedCount(0);
-            return;
-        }
+    const raw = localStorage.getItem('filterConditions');
+    if (!raw) {
+        setMatchedEmployees([]);
+        setFilteredEmployees([]);
+        setTotalRequestedCount(0);
+        return;
+    }
 
-        const filters: FilterCondition[] = JSON.parse(raw);
-        const totalCount = filters.reduce((sum, condition) => sum + condition.peopleCount, 0);
-        setTotalRequestedCount(totalCount);
+    const filters: FilterCondition[] = JSON.parse(raw);
+    const totalCount = filters.reduce((sum, condition) => sum + condition.peopleCount, 0);
+    setTotalRequestedCount(totalCount);
 
-        let result: typeof employees = [];
-        filters.forEach(condition => {
-            const matchGender = genderMap[condition.gender];
-            const matched = employees.filter(e => e.career === condition.career && e.gender === matchGender);
-            result = [...result, ...matched.slice(0, condition.peopleCount)];
-        });
+    let result: typeof employees = [];
+    filters.forEach(condition => {
+        const matched = employees.filter(e => e.career === condition.career && e.gender === condition.gender);
+        result = [...result, ...matched.slice(0, condition.peopleCount)];
+    });
 
-        setMatchedEmployees(result);
-        setFilteredEmployees(result);
-    }, []);
-
+    setMatchedEmployees(result);
+    setFilteredEmployees(result);
+}, []);
 
     const handleDelete = (nameToDelete: string) => {
         const confirmed = window.confirm('คุณแน่ใจหรือไม่ว่าต้องการลบพนักงานคนนี้?');
@@ -64,12 +58,12 @@ const WorkersPage: React.FC = () => {
             <Navbaruser />
 
             <div className="w-full min-h-screen items-center justify-center bg-white px-4 md:px-32 mt-32">
-                <div className='border-2 border-[#007AFF] rounded-[20px] py-12'>
+                <div className='border-2 border-primary rounded-[20px] py-12'>
                     <img src={images.status2} alt="status" className="w-full max-w-md mx-auto" />
                 </div>
 
-                <div className="mt-10 space-y-6 bg-white p-6 border-2 border-[#007AFF] rounded-[20px]">
-                    <h2 className="text-lg font-semibold text-blue-600 mb-4">
+                <div className="mt-10 space-y-6 bg-white p-6 border-2 border-primary rounded-[20px]">
+                    <h2 className="text-lg font-semibold text-primary mb-4">
                         รายชื่อพนักงาน
                         <span className="text-sm text-gray-500 ml-2">
                             จำนวน {filteredEmployees.length} / {totalRequestedCount} คน
