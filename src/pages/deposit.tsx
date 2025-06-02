@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 
 const Deposit: React.FC = () => {
     const navigate = useNavigate();
+    const allPerson = JSON.parse(localStorage.getItem('selectedEmployees') || '[]'); // Default to 1 if not set
+    const num = allPerson.length;
 
     const handleGoToWorkers = () => {
         navigate('/adminconfirm');
@@ -28,15 +30,30 @@ const Deposit: React.FC = () => {
                 </div>
 
                 <div className="mt-10 space-y-6 bg-white p-6 border-2 border-primary rounded-[20px] ">
-                    <div className="text-start mb-6 font-medium text-[20px] text-primary">
-                        ชำระเงินค่ามัดจำ
+                    <div className='flex items-end mb-6 gap-2'>
+                        <div className="text-start font-medium text-[20px] text-primary">
+                            ชำระเงินค่ามัดจำ
+                        </div>
+                        <div className='bg-primary p-2.5 rounded-[40px] text-white px-4'>
+                            {num}/{num}
+                        </div>
                     </div>
                     <img
-                        src={images.qr1}
+                        src={images.QR}
                         alt="status"
                         className="w-[180px] max-w-md mx-auto cursor-pointer hover:opacity-80 transition"
                         onClick={handleGoToWorkers}
                     />
+                    <div className='text-xl w-full flex flex-col justify-center items-center'>
+                        <div>
+                            ค่ามัดจำ 180 บาท
+                        </div>
+                        <div className='text-base'>
+                            หมายเหตุ: กรุณาชำระเงินค่ามัดจำภายใน 24 ชั่วโมง หลังจากนั้นระบบจะยกเลิกการจองอัตโนมัติ
+                        </div>
+                    </div>
+                    <div>
+                    </div>
                     < div className="flex items-center justify-center">
                         <Button
                             type="button"

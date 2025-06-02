@@ -2,6 +2,7 @@ import images from "@/assets";
 import BenefitCards from "@/components/BenefitCards";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
+import images from '../assets';
 
 export const Landing = () => {
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ export const Landing = () => {
                         </div>
                     </div>
                     <div className="flex justify-center items-center w-full">
-                        <img src="/public/handshake.svg" alt="group of people" className="object-cover" />
+                        <img src={images.handshake} alt="group of people" className="object-cover" />
                     </div>
                 </div>
             </div>
@@ -44,7 +45,7 @@ export const Landing = () => {
             <hr className="border-black border" />
             <div className="bg-[#398466] h-[100px] sticky flex justify-around items-center">
                 <div className="flex gap-2 items-center text-white">
-                    <img src="/public/handshake.svg" alt="group of people" className="object-cover size-10" />
+                    <img src={images.handshake} alt="group of people" className="object-cover size-10" />
                     <div>ไว้ใจ.in.th</div>
                 </div>
                 <div></div>
@@ -55,7 +56,7 @@ export const Landing = () => {
                         Contact
                     </div>
                     <div>
-                        Gmail: ซัพพอร์ต@gmail.com
+                        Gmail: Support@waijai.in.th
                     </div>
                     <div>
                         เบอร์โทร: 063-556-5555
