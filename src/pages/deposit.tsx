@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 
 const Deposit: React.FC = () => {
     const navigate = useNavigate();
+    const allPerson = JSON.parse(localStorage.getItem('selectedEmployees') || '[]'); // Default to 1 if not set
+    const num = allPerson.length;
 
     const handleGoToWorkers = () => {
         navigate('/adminconfirm');
@@ -33,7 +35,7 @@ const Deposit: React.FC = () => {
                             ชำระเงินค่ามัดจำ
                         </div>
                         <div className='bg-primary p-2.5 rounded-[40px] text-white px-4'>
-                            6/6
+                            {num}/{num}
                         </div>
                     </div>
                     <img

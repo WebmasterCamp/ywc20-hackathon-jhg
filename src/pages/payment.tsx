@@ -7,6 +7,11 @@ import { Button } from '@/components/ui/button';
 
 const Payment: React.FC = () => {
     const navigate = useNavigate();
+    const allPerson = JSON.parse(localStorage.getItem('selectedEmployees') || '[]'); // Default to 1 if not set
+    const num = allPerson.length;
+
+    const oldAll = JSON.parse(localStorage.getItem('allNumEmployees') || '0'); // Default to 1 if not set
+    const oldNum = oldAll;
 
     const handleGoToWorkers = () => {
         navigate('/Workers'); // ตรวจ spelling อีกครั้งนะครับว่า "/woerkers" ถูกต้องหรือไม่
@@ -32,7 +37,7 @@ const Payment: React.FC = () => {
                             ชำระเงิน
                         </div>
                         <div className='bg-primary p-2.5 rounded-[40px] text-white px-4'>
-                            6/6
+                            {num}/{oldNum}
                         </div>
                     </div>
                     <img
