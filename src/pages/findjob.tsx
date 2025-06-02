@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router';
 import employees from '@/data/dataworker';
+
 import {
     Select,
     SelectContent,
@@ -25,7 +26,6 @@ import images from '../assets';
 import Navbaruser from '@/components/Navbar/Navbaruser';
 import { Input } from '@/components/ui/input';
 
-import { JusticeHiringTip } from "@/components/่justiceHiringTip";
 
 // ✅ Schema
 const formSchema = z.object({
@@ -59,6 +59,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 export const FindJob: React.FC = () => {
     const navigate = useNavigate();
+
 
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
@@ -111,142 +112,95 @@ export const FindJob: React.FC = () => {
 
 
     return (
-        <>
-            <JusticeHiringTip />
-            <div className="min-h-screen">
-                <Navbaruser />
-                <div className="mt-32 w-full items-center justify-center bg-white px-4 md:px-46">
-                    <div className="rounded-[20px] border-2 border-[#1E1E1E] py-12">
-                        <img
-                            src={images.status1}
-                            alt="status"
-                            className="mx-auto w-full max-w-md"
-                        />
-                    </div>
+        <div className="min-h-screen">
+            <Navbaruser />
+            <div className="mt-32 w-full items-center justify-center bg-white px-4 md:px-46">
+                <div className="rounded-[20px] border-2 border-[#1E1E1E] py-12">
+                    <img
+                        src={images.status1}
+                        alt="status"
+                        className="mx-auto w-full max-w-md"
+                    />
+                </div>
 
-                    <Form {...form}>
-                        <form
-                            onSubmit={form.handleSubmit(onSubmit)}
-                            className="flex w-full flex-col space-y-6 pt-8"
-                        >
-                            <div className="flex flex-wrap justify-between gap-4">
-                                <div className="flex flex-wrap gap-4">
-                                    {/* ประเภทงาน */}
-                                    <FormField
-                                        control={form.control}
-                                        name="career"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="text-primary">
-                                                    ประเภทงาน
-                                                </FormLabel>
-                                                <FormControl>
-                                                    <Select
-                                                        onValueChange={
-                                                            field.onChange
-                                                        }
-                                                        value={field.value}
-                                                    >
-                                                        <SelectTrigger className="w-[150px] rounded-[40px] border-primary">
-                                                            <SelectValue placeholder="เลือกประเภทงาน" />
-                                                        </SelectTrigger>
-                                                        <SelectContent>
-                                                            {careers.map((career) => (
-                                                                <SelectItem key={career} value={career}>
-                                                                    {career}
-                                                                </SelectItem>
-                                                            ))}
-                                                        </SelectContent>
-                                                    </Select>
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
+                <Form {...form}>
+                    <form
+                        onSubmit={form.handleSubmit(onSubmit)}
+                        className="flex w-full flex-col space-y-6 pt-8"
+                    >
+                        <div className="flex flex-wrap justify-between gap-4">
+                            <div className="flex flex-wrap gap-4">
+                                {/* ประเภทงาน */}
+                                <FormField
+                                    control={form.control}
+                                    name="career"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel className="text-primary">
+                                                ประเภทงาน
+                                            </FormLabel>
+                                            <FormControl>
+                                                <Select
+                                                    onValueChange={
+                                                        field.onChange
+                                                    }
+                                                    value={field.value}
+                                                >
+                                                    <SelectTrigger className="w-[150px] rounded-[40px] border-primary">
+                                                        <SelectValue placeholder="เลือกประเภทงาน" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        {careers.map((career) => (
+                                                            <SelectItem key={career} value={career}>
+                                                                {career}
+                                                            </SelectItem>
+                                                        ))}
+                                                    </SelectContent>
+                                                </Select>
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
 
-                                    {/* เพศ */}
-                                    <FormField
-                                        control={form.control}
-                                        name="gender"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="text-primary">
-                                                    เพศ
-                                                </FormLabel>
-                                                <FormControl>
-                                                    <Select
-                                                        onValueChange={
-                                                            field.onChange
-                                                        }
-                                                        value={field.value}
-                                                    >
-                                                        <SelectTrigger className="w-[150px] rounded-[40px] border-primary">
-                                                            <SelectValue placeholder="เลือกเพศ" />
-                                                        </SelectTrigger>
-                                                        <SelectContent>
-                                                            <SelectItem value="male">
-                                                                ชาย
-                                                            </SelectItem>
-                                                            <SelectItem value="female">
-                                                                หญิง
-                                                            </SelectItem>
-                                                            <SelectItem value="other">
-                                                                ไม่ระบุ
-                                                            </SelectItem>
-                                                        </SelectContent>
-                                                    </Select>
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
+                                {/* เพศ */}
+                                <FormField
+                                    control={form.control}
+                                    name="gender"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel className="text-primary">
+                                                เพศ
+                                            </FormLabel>
+                                            <FormControl>
+                                                <Select
+                                                    onValueChange={
+                                                        field.onChange
+                                                    }
+                                                    value={field.value}
+                                                >
+                                                    <SelectTrigger className="w-[150px] rounded-[40px] border-primary">
+                                                        <SelectValue placeholder="เลือกเพศ" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        <SelectItem value="male">
+                                                            ชาย
+                                                        </SelectItem>
+                                                        <SelectItem value="female">
+                                                            หญิง
+                                                        </SelectItem>
+                                                        <SelectItem value="other">
+                                                            ไม่ระบุ
+                                                        </SelectItem>
+                                                    </SelectContent>
+                                                </Select>
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
 
-
-                                    {/* ช่วงอายุ */}
-                                    <FormField
-                                        control={form.control}
-                                        name="ageRange"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="text-[#007AFF]">
-                                                    ช่วงอายุ
-                                                </FormLabel>
-                                                <FormControl>
-                                                    <Select
-                                                        onValueChange={
-                                                            field.onChange
-                                                        }
-                                                        value={field.value}
-                                                    >
-                                                        <SelectTrigger className="w-full rounded-[40px] border-[#007AFF]">
-                                                            <SelectValue placeholder="เลือกช่วงอายุ" />
-                                                        </SelectTrigger>
-                                                        <SelectContent>
-                                                            <SelectItem value="18-25">
-                                                                18-25
-                                                            </SelectItem>
-                                                            <SelectItem value="26-35">
-                                                                26-35
-                                                            </SelectItem>
-                                                            <SelectItem value="36-45">
-                                                                36-45
-                                                            </SelectItem>
-                                                            <SelectItem value="46-55">
-                                                                46-55
-                                                            </SelectItem>
-                                                            <SelectItem value="56+">
-                                                                56+
-                                                            </SelectItem>
-                                                        </SelectContent>
-                                                    </Select>
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                </div>
-
-                                {/* จำนวนคน */}
+                                {/* ช่วงอายุ */}
                                 <FormField
                                     control={form.control}
                                     name="ageRange"
@@ -378,52 +332,51 @@ export const FindJob: React.FC = () => {
                                 }}
                             />
 
+                        </div>
 
-
-                            {watchCareer && watchGender && watchAgeRange && (
-                                <p className="text-sm text-gray-600">
-                                    ในสายงานนี้มีคนที่ตรงกับเงื่อนไข {matchedCount} คน
-                                </p>
+                        {watchCareer && watchGender && watchAgeRange && (
+                            <p className="text-sm text-gray-600">
+                                ในสายงานนี้มีคนที่ตรงกับเงื่อนไข {matchedCount} คน
+                            </p>
+                        )}
+                        {/* รายละเอียดเพิ่มเติม */}
+                        <FormField
+                            control={form.control}
+                            name="description"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel className="text-primary">
+                                        รายละเอียดเพิ่มเติม
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Textarea
+                                            placeholder="ความต้องการเพิ่มเติม"
+                                            className="min-h-[120px] resize-none border-primary"
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
                             )}
-                            {/* รายละเอียดเพิ่มเติม */}
-                            <FormField
-                                control={form.control}
-                                name="description"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel className="text-primary">
-                                            รายละเอียดเพิ่มเติม
-                                        </FormLabel>
-                                        <FormControl>
-                                            <Textarea
-                                                placeholder="ความต้องการเพิ่มเติม"
-                                                className="min-h-[120px] resize-none border-primary"
-                                                {...field}
-                                            />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            {peopleCountNum === 0 && watchCareer && watchGender && watchAgeRange && (
-                                <p className="text-center text-red-600 mb-2">ขออภัยค่ะ บุคลากรตอนนี้ไม่เพียงพอ</p>
-                            )}
+                        />
+                        {peopleCountNum === 0 && watchCareer && watchGender && watchAgeRange && (
+                            <p className="text-center text-red-600 mb-2">ขออภัยค่ะ บุคลากรตอนนี้ไม่เพียงพอ</p>
+                        )}
 
-                            <div className="flex items-center justify-center">
-                                <Button
-                                    type="submit"
-                                    disabled={peopleCountNum === 0 || form.formState.isSubmitting}
-                                    className="w-[140px] item-center bg-[#FB8A44] text-white hover:bg-[#FB8A44]/80 disabled:bg-gray-400 disabled:cursor-not-allowed"
-                                >
-                                    ส่งข้อมูล
-                                </Button>
-                            </div>
+                        <div className="flex items-center justify-center">
+                            <Button
+                                type="submit"
+                                disabled={peopleCountNum === 0 || form.formState.isSubmitting}
+                                className="w-[140px] item-center bg-[#FB8A44] text-white hover:bg-[#FB8A44]/80 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                            >
+                                ส่งข้อมูล
+                            </Button>
+                        </div>
 
-                        </form>
-                    </Form>
-                </div>
+                    </form>
+                </Form>
             </div>
-        </>
+        </div>
     );
 };
 
