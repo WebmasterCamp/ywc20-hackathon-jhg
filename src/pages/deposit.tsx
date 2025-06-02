@@ -37,7 +37,7 @@ const Deposit: React.FC = () => {
                         </div>
                     </div>
                     <img
-                        src='/public/QR.svg'
+                        src={images.QR}
                         alt="status"
                         className="w-[180px] max-w-md mx-auto cursor-pointer hover:opacity-80 transition"
                         onClick={handleGoToWorkers}
