@@ -7,15 +7,19 @@ import { Button } from '@/components/ui/button';
 
 const Payment: React.FC = () => {
     const navigate = useNavigate();
+    const allPerson = JSON.parse(localStorage.getItem('selectedEmployees') || '[]'); // Default to [] if not set
+    const num = allPerson.length;
+
+    const oldAll = JSON.parse(localStorage.getItem('allNumEmployees') || '0'); // Default to 0 if not set
+    const oldNum = oldAll;
 
     const handleGoToWorkers = () => {
         navigate('/receipt'); // ตรวจ spelling อีกครั้งนะครับว่า "/woerkers" ถูกต้องหรือไม่
     };
 
-        const onSubmit = () => {
 
-
-        navigate('/receipt');
+    const onSubmit = () => {
+        navigate('/adminconfirm');
     };
 
     return (
@@ -29,8 +33,14 @@ const Payment: React.FC = () => {
                 </div>
 
                 <div className="mt-10 space-y-6 bg-white p-6 border-2 border-primary rounded-[20px] ">
-                    <div className="text-start mb-6 font-medium text-[20px] text-primary">
-                        ชำระเงิน                    </div>
+                    <div className='flex items-end mb-6 gap-2'>
+                        <div className="text-start font-medium text-[20px] text-primary">
+                            ชำระเงิน
+                        </div>
+                        <div className='bg-primary p-2.5 rounded-[40px] text-white px-4'>
+                            {num}/{oldNum}
+                        </div>
+                    </div>
                     <img
                         src={images.qr2}
                         alt="status"
