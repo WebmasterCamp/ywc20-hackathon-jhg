@@ -12,8 +12,10 @@ import {
 } from '@/components/ui/form';
 import {loginSchema, type LoginFormValues} from '@/schemas/loginSchema';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 
 export function LoginForm() {
+    const navigate = useNavigate();
     const form = useForm<LoginFormValues>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
@@ -30,7 +32,7 @@ export function LoginForm() {
             icon: 'success',
             confirmButtonText: 'ตกลง',
         });
-        // handle login logic here (e.g., API call)
+        navigate('/Landingpage');
     };
 
     return (
