@@ -1,4 +1,3 @@
-import images from "@/assets";
 import BenefitCards from "@/components/BenefitCards";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
