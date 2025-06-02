@@ -1,57 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import images from '../assets';
 import Navbaruser from '@/components/Navbar/Navbaruser';
-import employees from '@/data/dataworker';
 import EmployeeCard from '../components/Card/EmployeeCard';
 import { useNavigate } from 'react-router';
-type FilterCondition = {
+
+type Gender = 'male' | 'female';
+
+type Employee = {
+    name: string;
+    age: number;
+    gender: Gender; // ใช้ enum แบบเฉพาะเจาะจง
     career: string;
-    gender: 'male' | 'female';
-    peopleCount: number;
 };
 
-
 const WorkersPage: React.FC = () => {
-    const [matchedEmployees, setMatchedEmployees] = useState<typeof employees>([]);
-    const [filteredEmployees, setFilteredEmployees] = useState<typeof employees>([]);
+    const [selectedEmployees, setSelectedEmployees] = useState<Employee[]>([]);
+    const [totalRequestedCount, setTotalRequestedCount] = useState(0); // ✅ เพิ่ม state นี้
     const [isChanged, setIsChanged] = useState(false);
-    const [totalRequestedCount, setTotalRequestedCount] = useState(0);
-
     const navigate = useNavigate();
+
     useEffect(() => {
-    const raw = localStorage.getItem('filterConditions');
-    if (!raw) {
-        setMatchedEmployees([]);
-        setFilteredEmployees([]);
-        setTotalRequestedCount(0);
-        return;
-    }
+        const raw = localStorage.getItem('selectedEmployees');
+        if (!raw) return;
 
-    const filters: FilterCondition[] = JSON.parse(raw);
-    const totalCount = filters.reduce((sum, condition) => sum + condition.peopleCount, 0);
-    setTotalRequestedCount(totalCount);
+        const selected: Employee[] = JSON.parse(raw);
 
-    let result: typeof employees = [];
-    filters.forEach(condition => {
-        const matched = employees.filter(e => e.career === condition.career && e.gender === condition.gender);
-        result = [...result, ...matched.slice(0, condition.peopleCount)];
-    });
+        // ⚠️ ตรวจสอบเพศให้เป็น 'male' | 'female' ถ้าเผื่อมีข้อมูลที่ไม่ตรง
+        const safeSelected = selected.map(emp => ({
+            ...emp,
+            gender: emp.gender === 'male' || emp.gender === 'female' ? emp.gender : 'male'
+        }));
 
-    setMatchedEmployees(result);
-    setFilteredEmployees(result);
-}, []);
+        setSelectedEmployees(safeSelected);
+        setTotalRequestedCount(safeSelected.length); // ✅ ตั้งค่าจำนวนรวม
+        localStorage.setItem('allNumEmployees', JSON.stringify(safeSelected.length));
+    }, []);
 
     const handleDelete = (nameToDelete: string) => {
         const confirmed = window.confirm('คุณแน่ใจหรือไม่ว่าต้องการลบพนักงานคนนี้?');
         if (confirmed) {
-            setFilteredEmployees(prev => {
+            setSelectedEmployees(prev => {
                 const updated = prev.filter(emp => emp.name !== nameToDelete);
                 setIsChanged(true);
                 return updated;
             });
         }
     };
-
 
     return (
         <div>
@@ -66,14 +60,14 @@ const WorkersPage: React.FC = () => {
                     <h2 className="text-lg font-semibold text-primary mb-4">
                         รายชื่อพนักงาน
                         <span className="text-sm text-gray-500 ml-2">
-                            จำนวน {filteredEmployees.length} / {totalRequestedCount} คน
+                            ทั้งหมด {selectedEmployees.length} / {totalRequestedCount} คน
                         </span>
                     </h2>
 
-                    {filteredEmployees.length > 0 ? (
+                    {selectedEmployees.length > 0 ? (
                         <>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-4">
-                                {filteredEmployees.map((emp) => (
+                                {selectedEmployees.map((emp) => (
                                     <EmployeeCard
                                         key={emp.name}
                                         name={emp.name}
@@ -85,13 +79,11 @@ const WorkersPage: React.FC = () => {
                                 ))}
                             </div>
 
-                            {/* แสดงปุ่มเมื่อมีการลบพนักงาน */}
                             {isChanged && (
                                 <div className="flex justify-end gap-4 mt-6 mx-4">
                                     <button
                                         onClick={() => {
-                                            localStorage.setItem('filteredEmployees', JSON.stringify(filteredEmployees));
-                                            setMatchedEmployees(filteredEmployees);
+                                            localStorage.setItem('selectedEmployees', JSON.stringify(selectedEmployees));
                                             setIsChanged(false);
                                         }}
                                         className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
@@ -100,7 +92,10 @@ const WorkersPage: React.FC = () => {
                                     </button>
                                     <button
                                         onClick={() => {
-                                            setFilteredEmployees(matchedEmployees);
+                                            const raw = localStorage.getItem('selectedEmployees');
+                                            if (raw) {
+                                                setSelectedEmployees(JSON.parse(raw));
+                                            }
                                             setIsChanged(false);
                                         }}
                                         className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400"
@@ -110,15 +105,11 @@ const WorkersPage: React.FC = () => {
                                 </div>
                             )}
 
-                            {/* แสดงปุ่มเมื่อไม่ลบใครเลย */}
-                            {!isChanged && filteredEmployees.length === matchedEmployees.length && (
-                                <div className="flex justify-end mt-6 mx-4">
+                            {!isChanged && (
+                                <div className="flex justify-center mt-6 mx-4">
                                     <button
-                                        onClick={() => {
-                                            localStorage.setItem('filteredEmployees', JSON.stringify(filteredEmployees));
-                                            navigate('/payment'); // เปลี่ยนหน้า
-                                        }}
-                                        className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+                                        onClick={() => navigate('/payment')}
+                                        className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-green-600"
                                     >
                                         ยืนยัน
                                     </button>
@@ -126,15 +117,12 @@ const WorkersPage: React.FC = () => {
                             )}
                         </>
                     ) : (
-                        <p className="text-center text-gray-500">ไม่พบข้อมูลพนักงานตามเงื่อนไข</p>
+                        <p className="text-center text-gray-500">ไม่มีพนักงานที่ถูกเลือกไว้</p>
                     )}
-
-
                 </div>
             </div>
         </div>
     );
 };
-
 
 export default WorkersPage;

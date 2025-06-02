@@ -5,22 +5,14 @@ type Props = {
   age: number;
   gender: 'male' | 'female'; 
   career: string;
-  onDelete: () => void;
+  // onDelete: () => void;  // ลบออกถ้าไม่ใช้
 };
 
-const EmployeeCard: React.FC<Props> = ({ name, age, gender, career, onDelete }) => {
+const ReceiptEmployeeCard: React.FC<Props> = ({ name, age, gender, career }) => {
   const displayGender = gender === 'male' ? 'ชาย' : 'หญิง'; // ✅ แปลงเป็นไทย
 
   return (
     <div className="relative flex items-center gap-4 border border-primary rounded-xl p-4 text-primary w-full">
-      {/* ปุ่ม X */}
-      <button
-        className="absolute top-2 right-2 text-red-500 hover:text-red-700 font-bold text-xl"
-        onClick={onDelete}
-        aria-label="ลบ"
-      >
-        ×
-      </button>
 
       {/* ไอคอน */}
       <div className="w-12 h-12 flex items-center justify-center rounded-full bg-primary text-white shrink-0">
@@ -41,4 +33,4 @@ const EmployeeCard: React.FC<Props> = ({ name, age, gender, career, onDelete }) 
   );
 };
 
-export default EmployeeCard;
+export default ReceiptEmployeeCard;

@@ -9,15 +9,15 @@ export const Landing = () => {
             <div className="flex min-h-screen w-full items-center justify-center bg-w">
                 <div className="text-center w-full lg:w-auto flex flex-col lg:flex-row gap-[25px]">
                     <div className="w-full flex flex-col gap-[25px] md:items-start">
-                        <div className="text-[64px] font-semibold text-center lg:text-left w-full lg:w-auto">WHO AM I</div>
+                        <div className="text-[64px] font-semibold text-center lg:text-left w-full lg:w-auto">คุณบ่นว่า <br />“หาคนทำงานไม่ได้”</div>
                         <div className="w-full lg:w-auto flex justify-center items-center">
-                            <div className="w-full lg:w-auto max-w-[400px] text-xl lg:text-left md:max-w-[600px] lg:max-w-[400px] xl:max-w-[800px]">สวัสดีLorem, ipsum dolor sit amet consectetur adipisicing elit. Harum blanditiis quos aliquid repellendus autem atque distinctio delectus, dolorem hic tempore saepe ipsam incidunt laboriosam rerum eos molestias. Perspiciatis, suscipit voluptatem?</div>
+                            <div className="w-full lg:w-auto max-w-[400px] text-xl lg:text-left md:max-w-[600px] lg:max-w-[400px] xl:max-w-[800px]">คุณบ่นว่า “หาคนทำงานไม่ได้” แต่คุณไม่เคยมองอดีตผู้ต้องขังยาเสพติดที่พร้อมพิสูจน์ตัวเอง เราไม่ได้แค่ส่งแรงงาน — เราส่งคนที่ทำให้องค์กรคุณ “กลับมาเชื่อในคน” อีกครั้ง</div>
                         </div>
                         <div className="flex gap-[25px] justify-center lg:justify-start items-center lg:items-start w-full lg:w-auto">
                             <Button onClick={() => {
                                 navigate('/company-login');
-                            }} className="rounded-[40px] text-white bg-[#FB8A44] hover:bg-[#FB8A44]/90">
-                                จ้างงาน
+                            }} className="rounded-[40px] text-[18px] px-7 text-white bg-[#FB8A44] hover:bg-[#FB8A44]/90">
+                                หาแรงงานที่พร้อมเริ่มใหม่
                             </Button>
                         </div>
                     </div>
