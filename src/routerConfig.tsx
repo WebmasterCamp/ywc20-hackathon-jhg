@@ -1,8 +1,12 @@
 import {createBrowserRouter} from 'react-router';
-import {LoginPage, JobRegisterPage, Landingpage, FineJob} from './pages';
+import { LoginPage, JobRegisterPage, Landingpage, FineJob, Landing } from './pages';
 import Adminconfirm from './pages/adminconfirm';
 
 export const router = createBrowserRouter([
+    {
+        path: '',
+        element: <Landing />,
+    },
     {
         path: '/company-login',
         element: <LoginPage />,
