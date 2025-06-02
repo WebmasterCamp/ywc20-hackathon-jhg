@@ -1,3 +1,6 @@
+import {createBrowserRouter} from 'react-router';
+import {LoginPage, JobRegisterPage, Landingpage, FineJob, WorkersPage, Payment, Deposit ,Landing, AdminApprovePage } from './pages';
+
 import { createBrowserRouter } from 'react-router';
 import { LoginPage, JobRegisterPage, Landingpage, FindJob, Landing, AdminApprovePage } from './pages';
 import Adminconfirm from './pages/adminconfirm';
@@ -18,15 +21,28 @@ export const router = createBrowserRouter([
     },
     {
         path: '/findjob',
-        element: <FindJob />,
+        element: <FineJob />,
     },
     {
         path: '/adminconfirm',
         element: <Adminconfirm />,
     },
     {
+        path: '/deposit',
+        element: <Deposit />,
+    },
+    {
+        path: '/workers',
+        element: <WorkersPage />,
+    },
+    {
+        path: '/payment',
+        element: <Payment />,
+    },
+    {
         path: '/Landingpage',
         element: <Landingpage />,
+
     },
     {
         path: '/admin/approve',

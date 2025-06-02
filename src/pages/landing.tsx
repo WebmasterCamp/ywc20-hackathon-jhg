@@ -14,8 +14,8 @@ const Landingpage: React.FC = () => {
     return (
         <div>
             <Navbar />
-            <div className="flex min-h-screen w-full items-center justify-center bg-white px-4 md:px-16">
-                <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 py-20 md:grid-cols-2">
+            <div className="w-full min-h-screen flex items-center justify-center bg-white px-4 md:px-32">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-6xl mx-auto py-20">
                     {/* ฝั่งข้อความ */}
                     <div>
                         <h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">
