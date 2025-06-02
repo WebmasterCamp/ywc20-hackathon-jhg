@@ -12,7 +12,7 @@ export const LoginPage = () => {
                     <p className="mt-4 text-sm text-gray-600">
                         เพิ่งพ้นโทษและกำลังมองหาโอกาสใหม่ใช่ไหม?{' '}
                         <a
-                            href="/job-register"
+                            href="/company-register"
                             className="text-blue-500 hover:underline"
                         >
                             สมัครงานที่นี่
