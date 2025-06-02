@@ -10,7 +10,7 @@ import status4 from './image/status4.png';
 import qr2 from './image/qr2.png';
 import rr from './image/rr.png';
 import QR from './image/QR.svg';
-import handshake from './image/handshake.png';
+import handshake from './image/handshake.svg';
 
 const images: {[key: string]: string} = {
     status1,
