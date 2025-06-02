@@ -18,14 +18,21 @@ import {
     type JobRegisterFormValues,
 } from '@/schemas/jobRegisterSchema'; // ปรับ path ตามโปรเจกต์คุณ
 import {useNavigate} from 'react-router';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 
 const skillOptions = [
-    {label: 'ช่างไม้', value: 'carpenter'},
-    {label: 'ช่างเชื่อม', value: 'welder'},
-    {label: 'ช่างไฟฟ้า', value: 'electrician'},
-    {label: 'ช่างซ่อมรถ', value: 'mechanic'},
-    {label: 'พนักงานคลังสินค้า', value: 'warehouse'},
-    {label: 'IT Support', value: 'it_support'},
+    {label: 'ช่างไม้', value: 'ช่างไม้'},
+    {label: 'ช่างเชื่อม', value: 'ช่างเชื่อม'},
+    {label: 'ช่างไฟฟ้า', value: 'ช่างไฟฟ้า'},
+    {label: 'ช่างซ่อมรถ', value: 'ช่างซ่อมรถ'},
+    {label: 'พนักงานคลังสินค้า', value: 'พนักงานคลังสินค้า'},
+    {label: 'IT Support', value: 'IT Support'},
 ];
 
 export const JobRegisterForm = () => {
@@ -33,21 +40,34 @@ export const JobRegisterForm = () => {
     const form = useForm<JobRegisterFormValues>({
         resolver: zodResolver(jobRegisterSchema),
         defaultValues: {
-            fullName: '',
+            firstName: '',
+            lastName: '',
             phone: '',
-            email: '',
             age: undefined,
             address: '',
             workHistory: '',
             skills: [],
+            gender: undefined,
         },
     });
 
     const onSubmit = (data: JobRegisterFormValues) => {
-        console.log('Submitted data:', data);
+        console.log(data);
+
+        // Get existing data from localStorage
+        const existingData = JSON.parse(
+            localStorage.getItem('jobRegisterData') || '[]',
+        );
+
+        // Append new data to the array
+        const updatedData = [...existingData, data];
+
+        // Save back to localStorage
+        localStorage.setItem('jobRegisterData', JSON.stringify(updatedData));
+
         Swal.fire({
             title: 'สมัครงานสำเร็จ!',
-            text: 'ขอบคุณสำหรับการสมัคร ทีมงานจะติดต่อกลับเร็วที่สุด',
+            text: 'เอกสารของคุณถูกบันทึกเรียบร้อยแล้ว ทีมงานจะพิจารณาและติดต่อกลับโดยเร็วที่สุดค่ะ',
             icon: 'success',
             confirmButtonText: 'ตกลง',
         }).then((result) => {
@@ -67,13 +87,31 @@ export const JobRegisterForm = () => {
                 {/* ชื่อ-นามสกุล */}
                 <FormField
                     control={form.control}
-                    name="fullName"
+                    name="firstName"
                     render={({field}) => (
                         <FormItem>
-                            <FormLabel>ชื่อ-นามสกุล</FormLabel>
+                            <FormLabel>ชื่อ</FormLabel>
                             <FormControl>
                                 <Input
-                                    placeholder="กรอกชื่อ-นามสกุล"
+                                    placeholder="กรอกชื่อ"
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+
+                {/* นามสกุล */}
+                <FormField
+                    control={form.control}
+                    name="lastName"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel>นามสกุล</FormLabel>
+                            <FormControl>
+                                <Input
+                                    placeholder="กรอกสกุล"
                                     {...field}
                                 />
                             </FormControl>
@@ -92,25 +130,6 @@ export const JobRegisterForm = () => {
                             <FormControl>
                                 <Input
                                     placeholder="0812345678"
-                                    {...field}
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-
-                {/* อีเมล */}
-                <FormField
-                    control={form.control}
-                    name="email"
-                    render={({field}) => (
-                        <FormItem>
-                            <FormLabel>อีเมล</FormLabel>
-                            <FormControl>
-                                <Input
-                                    type="text"
-                                    placeholder="กรอกอีเมล"
                                     {...field}
                                 />
                             </FormControl>
@@ -227,6 +246,86 @@ export const JobRegisterForm = () => {
                                         );
                                     })}
                                 </div>
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+
+                <FormField
+                    control={form.control}
+                    name="gender"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel>เพศ</FormLabel>
+                            <Select
+                                onValueChange={field.onChange}
+                                value={field.value}
+                            >
+                                <FormControl>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="เลือกเพศ" />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                    <SelectItem value="ชาย">ชาย</SelectItem>
+                                    <SelectItem value="หญิง">หญิง</SelectItem>
+                                </SelectContent>
+                            </Select>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+
+                {/* ไฟล์ A */}
+                <FormField
+                    control={form.control}
+                    name="fileA"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel>ไฟล์ A</FormLabel>
+                            <FormControl>
+                                <Input
+                                    type="file"
+                                    placeholder="ไฟล์ A"
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                {/* ไฟล์ B */}
+                <FormField
+                    control={form.control}
+                    name="fileB"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel>ไฟล์ A</FormLabel>
+                            <FormControl>
+                                <Input
+                                    type="file"
+                                    placeholder="ไฟล์ B"
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                {/* ไฟล์ C */}
+                <FormField
+                    control={form.control}
+                    name="fileC"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel>ไฟล์ C</FormLabel>
+                            <FormControl>
+                                <Input
+                                    type="file"
+                                    placeholder="ไฟล์ C"
+                                    {...field}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
