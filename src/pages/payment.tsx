@@ -19,7 +19,7 @@ const Payment: React.FC = () => {
 
 
     const onSubmit = () => {
-        navigate('/adminconfirm');
+        navigate('/receipt');
     };
 
     return (
