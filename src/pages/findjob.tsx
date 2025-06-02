@@ -60,7 +60,6 @@ type FormValues = z.infer<typeof formSchema>;
 export const FindJob: React.FC = () => {
     const navigate = useNavigate();
 
-
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: {
