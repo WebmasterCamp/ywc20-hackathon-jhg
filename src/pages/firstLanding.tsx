@@ -1,3 +1,4 @@
+import BenefitCards from "@/components/BenefitCards";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
 import images from '../assets';
@@ -26,6 +27,20 @@ export const Landing = () => {
                     </div>
                 </div>
             </div>
+            <div className="flex justify-center items-center ">
+                <img
+                    src={images.rr}
+                    className="w-auto mb-10 cursor-pointer transition"
+                />
+
+            </div><div className="text-center text-[20px] font-semibold mt-4">
+                <div className="text-white bg-primary mx-64 px-2 py-4 rounded-lg">แพลตฟอร์มที่เชื่อมต่ออดีตผู้ต้องขังยาเสพติดกับนายจ้าง</div>
+            </div>
+            <div className=" mx-64 mb-12">
+                            <BenefitCards />
+
+            </div>
+
             <hr className="border-black border" />
             <div className="bg-[#398466] h-[100px] sticky flex justify-around items-center">
                 <div className="flex gap-2 items-center text-white">
