@@ -11,7 +11,6 @@ import {
     FormMessage,
 } from '@/components/ui/form';
 import {loginSchema, type LoginFormValues} from '@/schemas/loginSchema';
-import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router';
 
 export function LoginForm() {
@@ -26,13 +25,7 @@ export function LoginForm() {
 
     const onSubmit = (values: LoginFormValues) => {
         console.log('Login submitted:', values);
-        Swal.fire({
-            title: 'เข้าสู่ระบบสำเร็จ!',
-            text: 'ยินดีต้อนรับกลับ!',
-            icon: 'success',
-            confirmButtonText: 'ตกลง',
-        });
-        navigate('/Landingpage');
+        navigate('/findjob');
     };
 
     return (

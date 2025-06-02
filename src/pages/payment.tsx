@@ -14,8 +14,9 @@ const Payment: React.FC = () => {
     const oldNum = oldAll;
 
     const handleGoToWorkers = () => {
-        navigate('/Workers'); // ตรวจ spelling อีกครั้งนะครับว่า "/woerkers" ถูกต้องหรือไม่
+        navigate('/receipt'); // ตรวจ spelling อีกครั้งนะครับว่า "/woerkers" ถูกต้องหรือไม่
     };
+
 
     const onSubmit = () => {
         navigate('/adminconfirm');

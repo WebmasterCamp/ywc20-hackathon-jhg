@@ -1,61 +1,55 @@
-import React from 'react';
-import Navbar from '../components/Navbar/Navbar';
-import JobCard from '../components/Card/JobCard';
-import {useNavigate} from 'react-router';
+import Navbaruser from "@/components/Navbar/Navbaruser";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router";
 
-const Landingpage: React.FC = () => {
+export const Landingpage = () => {
     const navigate = useNavigate();
-
-    const jobData = [
-        {title: 'Frontend Developer', count: 12},
-        {title: 'Backend Developer', count: 8},
-        {title: 'UX/UI Designer', count: 5},
-    ];
     return (
-        <div>
-            <Navbar />
-            <div className="w-full min-h-screen flex items-center justify-center bg-white px-4 md:px-32">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-6xl mx-auto py-20">
-                    {/* ฝั่งข้อความ */}
-                    <div>
-                        <h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">
-                            Website heading <br /> goes here
-                        </h1>
-                        <p className="mb-8 text-lg text-gray-500">
-                            Occaecat est ipsum reprehenderit reprehenderit
-                            veniam anim laborum est esse duis occaecat
-                            reprehenderit pariatur.
-                        </p>
-                        <div className="flex gap-4">
-                            <button
-                                onClick={() => navigate('/findjob')}
-                                className="rounded-md bg-indigo-600 px-6 py-3 font-medium text-white transition hover:bg-indigo-700"
-                            >
-                                Join us now
-                            </button>
-                            <button className="px-6 py-3 font-medium text-indigo-600 hover:underline">
-                                Learn more
-                            </button>
+        <>
+        <Navbaruser />
+            <div className="flex min-h-screen w-full items-center justify-center bg-w">
+                <div className="text-center w-full lg:w-auto flex flex-col lg:flex-row gap-[25px]">
+                    <div className="w-full flex flex-col gap-[25px] md:items-start">
+                        <div className="text-[64px] font-semibold text-center lg:text-left w-full lg:w-auto">คุณบ่นว่า <br />“หาคนทำงานไม่ได้”</div>
+                        <div className="w-full lg:w-auto flex justify-center items-center">
+                            <div className="w-full lg:w-auto max-w-[400px] text-xl lg:text-left md:max-w-[600px] lg:max-w-[400px] xl:max-w-[800px]">คุณบ่นว่า “หาคนทำงานไม่ได้” แต่คุณไม่เคยมองอดีตผู้ต้องขังยาเสพติดที่พร้อมพิสูจน์ตัวเอง เราไม่ได้แค่ส่งแรงงาน — เราส่งคนที่ทำให้องค์กรคุณ “กลับมาเชื่อในคน” อีกครั้ง</div>
+                        </div>
+                        <div className="flex gap-[25px] justify-center lg:justify-start items-center lg:items-start w-full lg:w-auto">
+                            <Button onClick={() => {
+                                navigate('/findjob');
+                            }} className="rounded-[40px] text-[18px] px-7 text-white bg-[#FB8A44] hover:bg-[#FB8A44]/90">
+                                หาแรงงานที่พร้อมเริ่มใหม่
+                            </Button>
                         </div>
                     </div>
-
-                    {/* ฝั่งขวา – กล่องสีเทาอ่อนมีวงกลมโหลด */}
-                    <div className="flex h-80 w-full items-center justify-center rounded-xl bg-gray-100">
-                        <div className="rounded-full border-4 border-gray-300 border-t-transparent"></div>
+                    <div className="flex justify-center items-center w-full">
+                        <img src="/public/handshake.svg" alt="group of people" className="object-cover" />
                     </div>
                 </div>
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-6 py-10">
-                {jobData.map((job, index) => (
-                    <JobCard
-                        key={index}
-                        title={job.title}
-                        count={job.count}
-                    />
-                ))}
+            <hr className="border-black border" />
+            <div className="bg-[#398466] h-[100px] sticky flex justify-around items-center">
+                <div className="flex gap-2 items-center text-white">
+                    <img src="/public/handshake.svg" alt="group of people" className="object-cover size-10" />
+                    <div>ไว้ใจ.in.th</div>
+                </div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div className="text-white">
+                    <div>
+                        Contact
+                    </div>
+                    <div>
+                        Gmail: ซัพพอร์ต@gmail.com
+                    </div>
+                    <div>
+                        เบอร์โทร: 063-556-5555
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
     );
-};
+}
 
 export default Landingpage;
