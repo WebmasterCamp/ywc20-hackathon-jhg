@@ -1,3 +1,4 @@
+import images from "@/assets";
 import Navbaruser from "@/components/Navbar/Navbaruser";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
@@ -23,7 +24,7 @@ export const Landingpage = () => {
                         </div>
                     </div>
                     <div className="flex justify-center items-center w-full">
-                        <img src="/public/handshake.svg" alt="group of people" className="object-cover" />
+                    <img src={images.handshake} alt="group of people" className="object-cover size-10" />
                     </div>
                 </div>
             </div>
