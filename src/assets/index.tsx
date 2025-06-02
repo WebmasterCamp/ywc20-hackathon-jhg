@@ -8,6 +8,7 @@ import qr1 from './image/qr1.png';
 import status3 from './image/status3.png';
 import status4 from './image/status4.png';
 import qr2 from './image/qr2.png';
+import handshake from './image/handshake.svg';
 const images: {[key: string]: string} = {
     status1,
     status2,
@@ -19,7 +20,7 @@ const images: {[key: string]: string} = {
     status3,
     status4,
     qr2,
-
+    handshake,
 };
 
 export default images;
