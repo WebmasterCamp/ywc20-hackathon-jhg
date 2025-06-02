@@ -1,33 +1,49 @@
-import {createBrowserRouter, Outlet} from 'react-router';
-import {LoginPage, JobRegisterPage} from './pages';
+import {createBrowserRouter} from 'react-router';
+import {LoginPage, JobRegisterPage, Landingpage, FineJob, WorkersPage, Payment, Deposit ,Landing, AdminApprovePage } from './pages';
+import Adminconfirm from './pages/adminconfirm';
 
 export const router = createBrowserRouter([
     {
-        path: '/',
+        path: '',
+        element: <Landing />
+        ,
+    },
+    {
+        path: '/company-login',
         element: <LoginPage />,
     },
     {
-        path: '/job-register',
+        path: '/company-register',
         element: <JobRegisterPage />,
     },
     {
-        path: '/home',
-        element: (
-            <div>
-                <div>layout if needed</div>
-                <Outlet />
-            </div>
-        ),
-        children: [
-            {
-                path: '',
-                element: <div>Settings</div>,
-            },
-            {
-                path: '/home/dashboard',
-                element: <div>Dashboard</div>,
-            },
-        ],
+        path: '/findjob',
+        element: <FineJob />,
+    },
+    {
+        path: '/adminconfirm',
+        element: <Adminconfirm />,
+    },
+    {
+        path: '/deposit',
+        element: <Deposit />,
+    },
+    {
+        path: '/workers',
+        element: <WorkersPage />,
+    },
+    {
+        path: '/payment',
+        element: <Payment />,
+    },
+    {
+        path: '/Landingpage',
+        element: <Landingpage />,
+
+    },
+    {
+        path: '/admin/approve',
+        element: <AdminApprovePage />,
     },
 ]);
 
