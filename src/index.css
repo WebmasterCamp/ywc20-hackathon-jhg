@@ -42,6 +42,17 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 :root {
   font-family: 'Prompt', sans-serif;
   --radius: 0.625rem;
