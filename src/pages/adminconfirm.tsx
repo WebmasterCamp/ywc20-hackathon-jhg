@@ -3,7 +3,6 @@ import images from '../assets';
 import Navbaruser from '@/components/Navbar/Navbaruser';
 import { useNavigate } from 'react-router';
 
-
 const Adminconfirm: React.FC = () => {
     const navigate = useNavigate();
 
@@ -31,7 +30,6 @@ const Adminconfirm: React.FC = () => {
                 </div>
             </div>
         </div>
-
     );
 };
 

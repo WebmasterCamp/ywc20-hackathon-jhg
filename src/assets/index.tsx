@@ -3,7 +3,7 @@ import status2 from './image/status2.png';
 import adminconfirm from './image/adminconfirm.png';
 import statusfinal from './image/statusfinal.png';
 
-const images: { [key: string]: string } = {
+const images: {[key: string]: string} = {
     status1,
     status2,
     adminconfirm,

@@ -12,10 +12,10 @@ export const router = createBrowserRouter([
         element: <JobRegisterPage />,
     },
     {
-        path: '/finejob',
+        path: '/findjob',
         element: <FineJob />,
     },
-     {
+    {
         path: '/adminconfirm',
         element: <Adminconfirm />,
     },
