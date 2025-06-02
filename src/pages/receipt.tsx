@@ -97,7 +97,7 @@ const Receipt: React.FC = () => {
 
                             <div className="flex justify-center mt-6">
                                 <button
-                                    onClick={() => navigate('/')}
+                                    onClick={() => navigate('/Landingpage')}
                                     className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-green-600"
                                 >
                                     หน้าหลัก
